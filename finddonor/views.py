@@ -9,9 +9,16 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 def load_cities(request):
     # print("sdhksdsknsl")
-    state_id = request.POST.get('state')
-    # print(state_id)
-    cities = City.objects.filter(state_id=state_id).order_by('name')
+    try:
+        state_id = request.POST.get('state')
+        cities = City.objects.filter(state_id=state_id).order_by('name')
+
+    except:
+        cities = City.objects.none()
+
+
+    #print(state_id)
+
     # print(cities)
     return render(request, 'finddonor/dropdown.html', {'cities': cities})
 

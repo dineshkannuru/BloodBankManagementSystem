@@ -177,6 +177,17 @@
     height: 100px;
     border-radius: 50%;
 }
+
+{% if user.userprofile.image  %}
+.bodysize {background-color: rgba(244,244,244,0.6);
+  color:rgba(70,43,43,0.8);
+  height : 950px;
+  width: 450px;
+  z-index:1;
+}
+{% endif %}
+
+
 </style>
 
 
@@ -189,6 +200,7 @@
 {% block body %}
 <br><br><br>
 
+         <center><h1>User Profile</h1></center>
 
 <div class="container bodysize justify-content-left">
   <div class="row col-12">
@@ -196,16 +208,16 @@
 
     {% if user.userprofile.image  %}
 
-    <a href="{% url 'home:image_upload' %}"><img width="300px"height="300px" src="{{user.userprofile.image.url}}"></a>
+    <a href="{% url 'home:image_upload' %}"><img style="border-radius: 60%;" width="230px"height="230px" src="{{user.userprofile.image.url}}"></a>
     {% else %}
         {% if user.useraddress.gender == "Female" %}
-        <a href="{% url 'home:image_upload' %}" style="color: black"><img src="{% static 'home/images/girlavatar.png' %}" alt="Avatar" class="avatar"></a>
+        <a href="{% url 'home:image_upload' %}" style="color: black"><img style="margin-left:30px;" src="{% static 'home/images/girlavatar.png' %}" alt="Avatar" class="avatar"></a>
         {% else %}
-        <a href="{% url 'home:image_upload' %}" style="color: black"><img src="{% static 'home/images/boyavatar.png' %}" alt="Avatar" class="avatar"></a>
+        <a href="{% url 'home:image_upload' %}" style="color: black"><img style="margin-left:30px;" src="{% static 'home/images/boyavatar.png' %}" alt="Avatar" class="avatar"></a>
         {% endif %}
     {% endif %}
 
-          <h3>Your Profile</h3>
+          <p style="color:blue; margin-top:10px ;margin-left:50px;">@{{user.username}}</p>
             </div>
     <div class="col-8">
     <p><i class="fa fa-info fa-fw
@@ -220,7 +232,7 @@
     <p></p>
     <p><i class="fa fa-user fa-fw
        w3-margin-right w3-large w3-text-teal">
-     </i>{{user.get_full_name}},{{user.username}}</p>
+     </i>{{user.get_full_name}}</p>
     <p></p>
     <p><i class="fa fa-envelope fa-fw
        w3-margin-right w3-large w3-text-teal">
@@ -274,4 +286,3 @@
 
 
 {% endblock %}
-

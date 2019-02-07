@@ -37,6 +37,7 @@ urlpatterns = [
                   path('paypal/', include('paypal.standard.ipn.urls')),
                   path('payment-button/', pay.payment_button, name='payment-button'),
                   path('hospitals/', include('Hospitals.urls')),
+                  path('requestor/', include('requestor.urls')),
 
                   ## Rest API :
                   path('rest/', include('RestFramework.urls'), name='rest'),

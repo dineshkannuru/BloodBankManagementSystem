@@ -23,12 +23,15 @@ from django.utils.http import is_safe_url, urlsafe_base64_decode
 from django.contrib import messages
 
 
-# from django.shortcuts import render,get_object_or_404
-# from .models import *
-# from rest_framework.views import APIView
-# from rest_framework import status
-# from rest_framework.response import Response
-# from .serializers import UserAddressSerializer
+def load_cities(request):
+    try:
+        state_id = request.POST.get('state')
+        cities = City.objects.filter(state_id=state_id).order_by('name')
+
+    except:
+        cities = City.objects.none()
+
+    return render(request, 'home/dropdown.html', {'cities': cities})
 
 def index(request):
     return render(request,'home/index.html')
